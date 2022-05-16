@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Musée CCI{% endblock %}</title>
+
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            <!-- UIkit CSS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" />
+        {% endblock %}
+
+          {% block javascripts %}
+            <!-- UIkit JS -->
+            <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+        {% endblock %}
+    </head>
+    <body>
+          {% block body %}
+            {# Permet de faire la navigation #}
+            {% block head %} 
+                {% block nav %}
+                    {% include "navigation/nav-top.html.twig" %}
+                {% endblock %}
+            {% endblock %}
+            {# Affiche le contenu du site#}
+            {% block contents %}
+            {# ici avec block contents, on va afficher le contenu du site #}
+            {% endblock %}
+      
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+			{# Block title above is the parent #}
+		</title>
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			<!-- UIkit CSS -->
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css"/>
+		{% endblock %}
+
+		{% block javascripts %}
+			<!-- UIkit JS -->
+			<script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/js/uikit-icons.min.js"></script>
+		{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+			<nav class="uk-navbar-container" uk-navbar>
+				<div class="uk-navbar-left">
+					<ul class="uk-navbar-nav">
+						<li class="uk-active">
+							<a href="">ACTIVE</a>
+						</li>
+							{% if is_granted("ROLE_MEMBER") %}
+								<li>
+								{# add nom et prenom when logged #}
+								<a href="#"> Hello, {{app.user.prenom}} {{app.user.nom}}</a>
+									{# <a href="#">{{app.user.email}}</a> #}
+									<div class="uk-navbar-dropdown">
+										<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li class="uk-active">
+												<a href="#">Profile</a>
+											</li>
+											<li>
+												<a href="#">bla</a>
+											</li>
+											{% if is_granted("ROLE_ADMIN") %}
+												<li>
+													<a href=>Admin</a>
+												</li>
+											{% endif %}
+											<li>
+												<a href="#">Sign Out</a>
+											</li>
+										</ul>
+
+									</div>
+								</li>
+							        {% else %}
+                        <li>
+                            <a href="{{ path("app_login")}}">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="{{ path("app_register")}}">Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        <a class="uk-navbar-item uk-logo" href="{{ path("app_home") }}">MUSEE CCI</a>
+        <div class="uk-navbar-center-right"><div>
+            <ul class="uk-navbar-nav">    
+                <li>
+                    <a href="#">Item</a>
+                </li>
+        </nav>
+        {% endblock %}
+
+    </body>
+</html>
